@@ -8,7 +8,10 @@ import pandas as pd
 def get_raw_story_json(input):
     with open(input, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return data["importGridList"]
+    try:
+        return data["importGridList"]
+    except KeyError:
+        return data["settingList"]
 
 
 def get_sheets_from_json(data):
